@@ -1,5 +1,9 @@
 use std::fs;
 use std::error::Error;
+<<<<<<< HEAD
+=======
+use std::io;
+>>>>>>> second
 
 pub struct Config {
     pub query: String,
@@ -9,16 +13,65 @@ pub struct Config {
 
 impl Config {
     pub fn new(args: Vec<String>) -> Result<Config, &'static str> {
+<<<<<<< HEAD
         if args.len() < 3 {
+=======
+        if args.len() < 4 {
+>>>>>>> second
             return Err("Not enough arguments!");
         }
 
         Ok(Config {
             query: args[1].clone(),
             filename: args[2].clone(),
+<<<<<<< HEAD
             case_sensitive: std::env::var("CASE_INSENSITIVE").is_err(),
         })
     }
+=======
+            case_sensitive: bool_from_string(args[3].clone()),
+        })
+    }
+
+    pub fn user_input() -> Result<Config, &'static str> {
+        let mut query = String::new();
+        let mut filename= String::new();
+        let mut case_sensitive= String::new();
+    
+        println!("Enter the query: ");
+        io::stdin().read_line(&mut query).unwrap();
+        println!("Enter the filename: ");
+        io::stdin().read_line(&mut filename).unwrap();
+        println!("Enter the case sensitivity(T/F): ");
+        io::stdin().read_line(&mut case_sensitive).unwrap();
+
+        let filename = filename.trim();
+        let query = query.trim();
+        let case_sensitive = case_sensitive.trim();
+
+        let b = match &case_sensitive[..] {
+            "T" => true,
+            "F" => false,
+            &_ => {return Err("Please, enter T or F");}
+        };
+    
+        Ok(Config {
+            query: query.to_string(),
+            filename: filename.to_string(),
+            case_sensitive: b,
+        })
+    }
+}
+
+fn bool_from_string(s: String) -> bool {
+    let b = match &s[..] {
+        "T" => true,
+        "F" => false,
+        &_ => {panic!("Not true of false");}
+    };
+
+    b
+>>>>>>> second
 }
 
 pub fn read_file(config: &Config) -> Result<String, Box<dyn Error>> {
@@ -76,4 +129,22 @@ mod tests {
         pick three.";
         assert_eq!(vec!["safe, fast, productive."], search(query, content, false));
     }
+<<<<<<< HEAD
+=======
+
+    #[test]
+    #[should_panic]
+    fn bool_from_string_check_failed() {
+        let s = "Q".to_string();
+        bool_from_string(s);
+    }
+
+    #[test]
+    #[should_panic]
+    fn bool_from_string_check_failed() {
+        let s = "Q".to_string();
+        bool_from_string(s);
+    }
+
+>>>>>>> second
 }

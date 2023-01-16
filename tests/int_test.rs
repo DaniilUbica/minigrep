@@ -14,7 +14,11 @@ fn config_new_check_failed() {
 
 #[test]
 fn config_new_check_passed() {
+<<<<<<< HEAD
     let args:Vec<String> = vec!["qwe".to_string(), "we".to_string(), "poem.txt".to_string()];
+=======
+    let args:Vec<String> = vec!["qwe".to_string(), "we".to_string(), "poem.txt".to_string(), "T".to_string()];
+>>>>>>> second
     let b: bool;
 
     match Config::new(args) {

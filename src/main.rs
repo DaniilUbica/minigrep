@@ -1,4 +1,8 @@
 use std::env;
+<<<<<<< HEAD
+=======
+use std::io;
+>>>>>>> second
 
 use minigrep::Config;
 
@@ -6,7 +10,11 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let content;
 
+<<<<<<< HEAD
     let config = match Config::new(args) {
+=======
+    let config = match Config::user_input() {
+>>>>>>> second
         Ok(smth) => smth,
         Err(err) => {eprintln!("Error parsing arguments: {}", err); panic!("Restart app to try again!")}
     };
@@ -24,5 +32,14 @@ fn main() {
     for i in minigrep::search(&config.query, &content, config.case_sensitive) {
         println!("Word {} founded in line: {}", &config.query, i);
     }
+<<<<<<< HEAD
+=======
+
+    let mut q= String::new();
+    
+    println!("Press any button to quit: ");
+    io::stdin().read_line(&mut q).unwrap();
+
+>>>>>>> second
 }
 
