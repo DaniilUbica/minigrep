@@ -1,9 +1,6 @@
 use std::fs;
 use std::error::Error;
-<<<<<<< HEAD
-=======
 use std::io;
->>>>>>> second
 
 pub struct Config {
     pub query: String,
@@ -13,22 +10,13 @@ pub struct Config {
 
 impl Config {
     pub fn new(args: Vec<String>) -> Result<Config, &'static str> {
-<<<<<<< HEAD
-        if args.len() < 3 {
-=======
         if args.len() < 4 {
->>>>>>> second
             return Err("Not enough arguments!");
         }
 
         Ok(Config {
             query: args[1].clone(),
             filename: args[2].clone(),
-<<<<<<< HEAD
-            case_sensitive: std::env::var("CASE_INSENSITIVE").is_err(),
-        })
-    }
-=======
             case_sensitive: bool_from_string(args[3].clone()),
         })
     }
@@ -71,7 +59,6 @@ fn bool_from_string(s: String) -> bool {
     };
 
     b
->>>>>>> second
 }
 
 pub fn read_file(config: &Config) -> Result<String, Box<dyn Error>> {
@@ -129,8 +116,6 @@ mod tests {
         pick three.";
         assert_eq!(vec!["safe, fast, productive."], search(query, content, false));
     }
-<<<<<<< HEAD
-=======
 
     #[test]
     #[should_panic]
@@ -141,10 +126,9 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn bool_from_string_check_failed() {
-        let s = "Q".to_string();
+    fn bool_from_string_check_passed() {
+        let s = "T".to_string();
         bool_from_string(s);
     }
 
->>>>>>> second
 }
